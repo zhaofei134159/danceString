@@ -1,23 +1,26 @@
 import BackGround from './runtime/background'
-import GameInfo   from './runtime/gameinfo'
 import Music      from './runtime/music'
 import DataBus    from './databus'
 
 let ctx   = canvas.getContext('2d')
 let databus = new DataBus()
 
-
 wx.cloud.init({
   env: 'dance-134zf',
   traceUser: true,
 })
 const db = wx.cloud.database()
+const screenWidth  = window.innerWidth
+const screenHeight = window.innerHeight
 
 /**
  * 游戏主函数
  */ 
 export default class Main {
   constructor() {
+    // 维护当前requestAnimationFrame的id
+    this.aniId    = 0
+    this.personalHighScore = null
 
     this.restart()
     this.login()
@@ -39,14 +42,66 @@ export default class Main {
   restart() {
     databus.reset()
 
-    // 设置背景色为白色
-    ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle="#000000";
-    ctx.fillText("打砖块",10,50);
-    
+    this.bg = new BackGround(ctx);
 
+    this.startButton();
+    this.textShow();
+    
+    // 为了实现帧动画
+    this.bindLoop = this.loop.bind(this)
+    this.aniId = window.requestAnimationFrame(
+      this.bindLoop,
+      canvas
+    )
   }
 
+  /**
+   * canvas重绘函数
+   * 每一帧重新绘制所有的需要展示的元素
+   */
+  render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+    this.bg.render(ctx)
+  }
+
+  // 实现游戏帧循环
+  loop() {
+    databus.frame++
+
+    this.render()
+    this.aniId = window.requestAnimationFrame(
+      this.bindLoop,
+      canvas
+    )
+  }
+
+  startButton(){
+    let button = wx.createUserInfoButton({
+        type: 'text',
+        text: '开始游戏',
+        style: {
+            left:screenWidth/3,
+            top:screenHeight/1.3,
+            width: screenWidth/3,
+            height: 40,
+            lineHeight: 40,
+            backgroundColor: '#D3AE70',
+            color: '#ffffff',
+            textAlign: 'center',
+            fontSize: 16,
+            borderRadius: 4
+        }
+    });
+    button.show();
+    button.onTap((res) => {
+        console.log(res);
+    });
+  }
+
+  textShow(){
+    ctx.fillStyle = '#FFFFFF'
+    ctx.font = "20px sans-serif"
+    ctx.fillText('弦音砖块', 40, 50)
+  }
 }

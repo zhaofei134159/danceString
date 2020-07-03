@@ -19,7 +19,6 @@ export default class DataBus {
 
   reset() {
 
-    
   }
 
 }
