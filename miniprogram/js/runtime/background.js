@@ -13,7 +13,8 @@ const BGIMGPATH = [
 const screenWidth  = window.innerWidth
 const screenHeight = window.innerHeight
 
-const BG_IMG_SRC   = BGIMGPATH[rand(1,8)]
+const BGRAND = Math.floor(Math.random()*7)
+const BG_IMG_SRC   = BGIMGPATH[BGRAND]
 const BG_WIDTH     = 512
 const BG_HEIGHT    = 512
 

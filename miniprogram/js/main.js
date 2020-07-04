@@ -100,6 +100,7 @@ export default class Main {
   }
 
   textShow(){
+
     ctx.fillStyle = '#FFFFFF'
     ctx.font = "20px sans-serif"
     ctx.fillText('弦音砖块', 40, 50)
