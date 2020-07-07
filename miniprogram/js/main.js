@@ -45,7 +45,6 @@ export default class Main {
     this.bg = new BackGround(ctx);
 
     this.startButton();
-    this.textShow();
     
     // 为了实现帧动画
     this.bindLoop = this.loop.bind(this)
@@ -95,14 +94,22 @@ export default class Main {
     });
     button.show();
     button.onTap((res) => {
-        console.log(res);
+        wx.login({
+          success (res) {
+            if (res.code) {
+              //发起网络请求
+              wx.request({
+                url: 'https://test.com/onLogin',
+                data: {
+                  code: res.code
+                }
+              })
+            } else {
+              console.log('登录失败！' + res.errMsg)
+            }
+          }
+        })
     });
   }
 
-  textShow(){
-
-    ctx.fillStyle = '#FFFFFF'
-    ctx.font = "20px sans-serif"
-    ctx.fillText('弦音砖块', 40, 50)
-  }
 }

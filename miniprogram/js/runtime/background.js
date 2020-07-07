@@ -3,17 +3,12 @@ const BGIMGPATH = [
   'resource/images/bj0.jpg',
   'resource/images/bj1.jpg',
   'resource/images/bj2.jpg',
-  'resource/images/bj3.jpg',
-  'resource/images/bj4.jpg',
-  'resource/images/bj5.jpg',
-  'resource/images/bj6.jpg',
-  'resource/images/bj7.jpg',
 ]
 
 const screenWidth  = window.innerWidth
 const screenHeight = window.innerHeight
 
-const BGRAND = Math.floor(Math.random()*7)
+const BGRAND = Math.floor(Math.random()*3)
 const BG_IMG_SRC   = BGIMGPATH[BGRAND]
 const BG_WIDTH     = 512
 const BG_HEIGHT    = 512
