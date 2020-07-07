@@ -1,4 +1,5 @@
 import Sprite from '../base/sprite.js'
+import databus from '../base/databus.js'
 
 
 const BG_IMG_SRC = 'images/building.png'
@@ -12,7 +13,7 @@ export default class Building extends Sprite {
 
     this.left = 0
   }
-
+  
   draw(ctx) {
 
     ctx.drawImage(

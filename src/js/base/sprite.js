@@ -1,6 +1,3 @@
-// @author: wyndam
-// @email: only.night@qq.com
-
 /**
  * 精灵类，包含绘图以及碰撞检测等
  */

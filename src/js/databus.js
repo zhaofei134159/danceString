@@ -1,8 +1,4 @@
-// @author: wyndam
-// @email: only.night@qq.com
-
 import Pool from './base/pool.js'
-import BarrierPair from './runtime/barrierPair.js'
 
 window.RATIO = window.innerWidth / 288
 
@@ -51,6 +47,7 @@ export default class DataBus {
       this.pool.put('building', temp)
     }
   }
+  
 
 }
 
