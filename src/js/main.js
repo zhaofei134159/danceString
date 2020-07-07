@@ -70,7 +70,7 @@ export default class Main {
 
 
   update(){
-
+    // this.build.draw(ctx)
   }
 
 }

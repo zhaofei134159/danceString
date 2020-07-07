@@ -40,47 +40,15 @@ export default class DataBus {
   /**
    * 从添加到绘制的障碍物列表中回收不显示的用于新障碍物的显示
    */
-  recycleBarrier(barrier) {
-    if (barrier != null) {
+  recycleBarrier(building) {
+    if (building != null) {
 
-      // let temp = null
-      // let index = -1
-      // for (let i = 0; i < this.barriers.length; i++) {
-      //   if (this.barriers[i].index == barrier.index) {
-      //     temp = this.barriers[i]
-      //     index = i
-      //     break
-      //   }
-      // }
 
-      // if (temp != null) {
-      //   this.barriers.splice(index, 1)
-      //   temp.visible = false
-      //   this.pool.put('barrier', temp)
-      //   // temp = null
-      // }
-
-      barrier.visible = false
-      let temp = this.barriers.shift()
+      building.visible = false
+      let temp = this.buildings.shift()
       temp.visible = false
-      this.barriers[0].left -= this.speed
-      this.pool.put('barrier', temp)
-    }
-  }
-
-  /**
-   * 从对象池中去除障碍物组合对象，没有的话就创建一个
-   */
-  generateBarrier(barrierTop, barrierBottom, x, y, blank) {
-    let barrier = this.pool.get('barrier')
-
-    if (barrier != null) {
-      barrier.init(barrierTop, barrierBottom, x, y, blank)
-      return barrier
-    } else {
-      let temp = new BarrierPair()
-      temp.init(barrierTop, barrierBottom, x, y, blank)
-      return temp
+      this.buildings[0].left -= this.speed
+      this.pool.put('building', temp)
     }
   }
 
