@@ -1,9 +1,9 @@
 import BackGround from './runtime/background.js'
 import Building from './runtime/building.js'
-import databus from './runtime/databus.js'
+import DataBus from './databus.js'
 
 let ctx   = canvas.getContext('2d')
-// let databus = new DataBus()
+let databus = new DataBus()
 
 wx.cloud.init({
   env: 'dance-134zf',
@@ -36,7 +36,7 @@ export default class Main {
   }
 
   restart() {
-    // databus.reset()
+    databus.reset()
 
     this.bg = new BackGround();
     this.build = new Building();
@@ -65,9 +65,9 @@ export default class Main {
 
   render() {
     this.bg.draw(ctx)
-    databus.bullets.concat(databus.enemys).forEach((item) => {
-              item.drawToCanvas(ctx)
-            })
+    databus.buildings.concat(databus.buildings).forEach((item) => {
+      item.drawToCanvas(ctx)
+    })
 
   }
 
@@ -79,27 +79,10 @@ export default class Main {
 
 
   buildGenerate() {
-    if ( databus.frame % 30 === 0 ) {
-      let build = databus.pool.getItemByClass('build', build)
-      build.init(6)
-      databus.buildings.push(build)
-    }
-  }
-
-
-  init(frame){
-    if (frame % databus.barrierGenFrame !== 0) {
-        this.x = x
-        this.y = y
-        this.start = x
-        this.width = width
-        this.height = height
-     
-      let build = databus.generateBarrier('images/pipe_down.png', 'images/pipe_up.png',
-        window.innerWidth, px2dp(-130) + Math.random() * px2dp(100), px2dp(130))
-      let build = super(BG_IMG_SRC, -40, 190, BG_IMG_WIDTH, BG_IMG_HEIGHT)
-
-      databus.buildings.push(build)
+    if (databus.frame % 30 === 0 ) {
+      let building = databus.pool.getItemByClass('building', Building)
+      building.init(6)
+      databus.buildings.push(building)
     }
   }
 

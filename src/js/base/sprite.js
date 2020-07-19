@@ -19,22 +19,25 @@ export default class Sprite {
     // 标识当前对象是否显示
     this.visible = true
   }
-
+  
   /**
-   * 将图片绘制到 canvas 上
-   * {@param ctx cancas context 对象}
+   * 将精灵图绘制在canvas上
    */
-  draw(ctx) {
-    if (!this.visible) {
+  drawToCanvas(ctx) {
+    if ( !this.visible )
       return
-    }
 
+    console.log(this.img);
+    console.log(this.x);
+    console.log(this.y);
+    console.log(this.width);
+    console.log(this.height);
     ctx.drawImage(
       this.img,
       this.x,
       this.y,
-      this.width,
-      this.height
+      0,
+      0
     )
   }
 
