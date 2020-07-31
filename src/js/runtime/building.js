@@ -1,5 +1,5 @@
 import Sprite from '../base/sprite.js'
-import databus from '../base/databus.js'
+import databus from '../databus.js'
 
 
 const BG_IMG_SRC = 'images/building.png'
@@ -25,6 +25,14 @@ export default class Building extends Sprite {
     )
   }
 
+  init(speed) {
+    this.x = -this.height
+    this.y = rnd(0, window.innerWidth - ENEMY_WIDTH)
+
+    this[__.speed] = speed
+
+    this.visible = true
+  }
 
   update() {
     
