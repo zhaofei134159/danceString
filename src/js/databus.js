@@ -9,29 +9,26 @@ window.px2dp = function(px) {
 let instance
 
 export default class DataBus {
-
   constructor() {
-    if (instance == null) {
-      instance = this
-    } else {
+    if ( instance )
       return instance
-    }
 
-    // 从开始到现在的帧数
-    this.frame = 0
-    // 游戏是否在运行，是否需要更新
-    this.running = true
-    // 游戏是否结束
-    this.gameOver = false
-    // 障碍物显示队列
-    this.buildings = []
-    // 缓存对象池
+    instance = this
+
     this.pool = new Pool()
 
-    // 全局难度参数
-    this.speed = 2 // 速度
-    this.barrierGenFrame = 80 // 生成障碍物间隔帧数
+    this.reset()
   }
+
+  reset() {
+    this.frame      = 0
+    this.score      = 0
+    this.bullets    = []
+    this.buildings  = []
+    this.animations = []
+    this.gameOver   = false
+  }
+
 
   /**
    * 从添加到绘制的障碍物列表中回收不显示的用于新障碍物的显示

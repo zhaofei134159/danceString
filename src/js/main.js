@@ -36,7 +36,7 @@ export default class Main {
   }
 
   restart() {
-    // databus.reset()
+    databus.reset()
 
     this.bg = new BackGround();
     this.build = new Building();
@@ -64,12 +64,10 @@ export default class Main {
   }
 
   render() {
-    // this.bg.draw(ctx)
-    // console.log(databus.buildings);
-    // databus.buildings.forEach((item) => {
-        // item.drawToCanvas(ctx)
-    // })
-
+    this.bg.draw(ctx)
+    databus.buildings.concat(databus.buildings).forEach((item) => {
+      item.drawToCanvas(ctx)
+    })
   }
 
 
@@ -80,12 +78,10 @@ export default class Main {
 
 
   buildGenerate() {
-    if ( databus.frame % 30 === 0 ) {
-      let build = databus.pool.getItemByClass('building', Building)
-      console.log(build);
-
-      // build.init(2)
-      // databus.buildings.push(build)
+    if (databus.frame % 30 === 0 ) {
+      let building = databus.pool.getItemByClass('building', Building)
+      building.init(6)
+      databus.buildings.push(building)
     }
   }
 }
