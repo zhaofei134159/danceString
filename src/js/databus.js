@@ -1,11 +1,5 @@
 import Pool from './base/pool.js'
 
-window.RATIO = window.innerWidth / 288
-
-window.px2dp = function(px) {
-  return px * RATIO
-}
-
 let instance
 
 export default class DataBus {

@@ -35,7 +35,6 @@ export default class Building extends Animation {
   }
 
   init(speed){
-    this.img = BUILD_IMG_SRC
     this.x = rnd(0, window.innerWidth - BUILD_IMG_WIDTH)
     this.y = BUILD_IMG_HEIGHT
     this[__.speed] = speed

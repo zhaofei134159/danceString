@@ -4,17 +4,14 @@
 export default class Sprite {
 
   constructor(imgSrc, x, y, width, height, hasImg = true) {
+    this.img = new Image()
+    this.img.src = imgSrc
+    
     // 当前对象的坐标以及尺寸
     this.x = x
     this.y = y
     this.width = width
     this.height = height
-
-    // 当前对象显示的图片
-    if (hasImg) {
-      this.img = new Image()
-      this.img.src = imgSrc
-    }
 
     // 标识当前对象是否显示
     this.visible = true
@@ -26,12 +23,7 @@ export default class Sprite {
   drawToCanvas(ctx) {
     if ( !this.visible )
       return
-
-    console.log(this.img);
-    console.log(this.x);
-    console.log(this.y);
-    console.log(this.width);
-    console.log(this.height);
+    console.log('图像'+this.img);
     ctx.drawImage(
       this.img,
       this.x,

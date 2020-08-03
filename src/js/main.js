@@ -10,8 +10,6 @@ wx.cloud.init({
   traceUser: true,
 })
 const db = wx.cloud.database()
-const screenWidth  = window.innerWidth
-const screenHeight = window.innerHeight
 
 /**
  * 游戏主函数
@@ -39,7 +37,7 @@ export default class Main {
     databus.reset()
 
     this.bg = new BackGround();
-    this.build = new Building();
+    // this.build = new Building();
 
     // 为了实现帧动画
     this.bindLoop = this.loop.bind(this)
@@ -64,8 +62,10 @@ export default class Main {
   }
 
   render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
     this.bg.draw(ctx)
-    databus.buildings.concat(databus.buildings).forEach((item) => {
+    databus.buildings.forEach((item) => {
       item.drawToCanvas(ctx)
     })
   }
@@ -78,10 +78,8 @@ export default class Main {
 
 
   buildGenerate() {
-    if (databus.frame % 30 === 0 ) {
       let building = databus.pool.getItemByClass('building', Building)
       building.init(6)
       databus.buildings.push(building)
-    }
   }
 }
